@@ -37,6 +37,6 @@
         - --add_to_master: Appends output to master
         - --complete_pending: Allows to manually classify unclassified transactions before generating output.
 - persfin analyze [year] 
-    -- Analyses master data per the input year
+    - Analyses master data per the input year
 
 
