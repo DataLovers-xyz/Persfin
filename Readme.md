@@ -31,12 +31,12 @@
         - Identify what columns need reprocessing. 
         - Testing file and ABN AMRO mapper requires preprocessing on date field.
 ### Commands:
-- persfin classify <path to input file> 
+- persfin classify [path to input file]
     - options
         - --analyze: Analyzes output produced and generates output file.
         - --add_to_master: Appends output to master
         - --complete_pending: Allows to manually classify unclassified transactions before generating output.
-- persfin analyze <year> 
+- persfin analyze [year] 
     -- Analyses master data per the input year
 
 
