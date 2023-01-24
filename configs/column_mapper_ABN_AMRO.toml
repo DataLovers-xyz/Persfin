@@ -1,0 +1,7 @@
+# Column mapper for ABN AMRO
+title = "mapper"
+
+[columns]
+Date = "transactiondate"
+Amount = "amount"
+Description = "description"
