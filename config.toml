@@ -7,7 +7,7 @@ classifiers = "./classifiers/NL"
 output_files = "./outputs"
 master_data = "./master_data"
 
-[preprocess]
+[custom_preprocess]
 enabled = true
 column = "Date"
-script = "./utils/preprocesser/amro_date_preprocess.py"
+script = "amro_date_preprocess"
