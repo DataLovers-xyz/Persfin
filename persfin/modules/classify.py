@@ -1,8 +1,8 @@
-from .pandas_services import ingest_data, get_canonical_df, get_custom_preprocessed_df, get_preprocessed_df, get_classified_df
+from .pandas_services import ingest_data, get_canonical_df, get_custom_preprocessed_df, get_preprocessed_df, get_classified_df, output_file
 import custom_preprocesses
 from exceptions import Preprocess_Definition_Error
 import json
-
+from datetime import datetime
 
 def main(execution_params, configurations, canonical_schema):
     working_df = get_working_df(execution_params["path"])
@@ -10,6 +10,7 @@ def main(execution_params, configurations, canonical_schema):
     preprocessed_df = preprocess(canonical_df,configurations)
     classification_set = get_classifiers(configurations)
     classified_df = get_classified_df(preprocessed_df,classification_set)
+    output_file(classified_df, get_file_name(configurations))
     print(classified_df)
 
 def preprocess(canonical_df, configurations):
@@ -49,3 +50,8 @@ def get_working_df(path):
 
 def verify_custom_preprocess(configurations):
     return configurations["custom_preprocess"]["script"] in set(dir(custom_preprocesses))
+
+def get_file_name(configurations):
+    folder = configurations["paths"]["output_files"]
+    name = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    return folder+"/"+name+".xlsx"

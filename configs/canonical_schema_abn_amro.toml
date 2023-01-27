@@ -1,5 +1,5 @@
 # Column mapper for ABN AMRO
-title = "mapper"
+title = "Canonical Schema ABN AMRO"
 
 [columns]
 Date = "transactiondate"

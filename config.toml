@@ -2,10 +2,9 @@
 title = "PersFin Configurations"
 
 [paths]
-column_mapper = "./configs/column_mapper_ABN_AMRO.toml"
+column_mapper = "./configs/canonical_schema_abn_amro.toml"
 classifiers = "./classifiers/NL"
 output_files = "./outputs"
-master_data = "./master_data"
 
 [custom_preprocess]
 enabled = true

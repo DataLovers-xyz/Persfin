@@ -1,4 +1,6 @@
+from datetime import datetime
+
 def main(amro_date):
     date_str= str(amro_date)
-    date = date_str[6:]+"/"+date_str[4:6] +"/"+date_str[:4]
+    date = datetime.strptime(date_str,"%Y%m%d")
     return date

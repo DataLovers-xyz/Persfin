@@ -33,3 +33,5 @@ def get_classified_df(source_df,classification_set):
     classified_df["Class"] = classified_df["Description"].map(lambda entry:classification_engine(entry,classification_set))
     return classified_df
 
+def output_file(source_df,path):
+    source_df.to_excel(path,index=False)
