@@ -11,3 +11,8 @@ master_data = "./master_data"
 enabled = true
 column = "Date"
 script = "amro_date_preprocess"
+
+[classifiers]
+"Groceries" = "groceries.json"
+"Eating Out" = "eat_out.json"
+"Cosmetics OOT Medicines" = "cosmetics_out_of_counter_medicines.json"

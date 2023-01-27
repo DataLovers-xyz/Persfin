@@ -1,5 +1,6 @@
 import pandas
 from exceptions import Master_Schema_Error
+from modules.utilities import classification_engine
 
 def ingest_data(path):
     working_data = pandas.read_excel(path)
@@ -23,8 +24,12 @@ def get_custom_preprocessed_df(canonical_df, column, preprocess_func):
     return preprocessed_df
 
 def get_preprocessed_df(canonical_df):
-    expenses_filtered_df = canonical_df[canonical_df["Amount"]<0]
+    expenses_filtered_df = canonical_df[canonical_df["Amount"]<0].copy()
     expenses_filtered_df["Amount"] = expenses_filtered_df['Amount'].abs()
     return expenses_filtered_df
 
+def get_classified_df(source_df,classification_set):
+    classified_df = source_df.copy()
+    classified_df["Class"] = classified_df["Description"].map(lambda entry:classification_engine(entry,classification_set))
+    return classified_df
 
