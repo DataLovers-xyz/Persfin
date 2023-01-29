@@ -11,7 +11,12 @@ def main(execution_params, configurations, canonical_schema):
     classification_set = get_classifiers(configurations)
     classified_df = get_classified_df(preprocessed_df,classification_set)
     output_file(classified_df, get_file_name(configurations))
+    input(f"generated classified file {get_file_name(configurations)} press key to continue")
     print(classified_df)
+    input("your classified file looks like this press any key to continue")
+    print(classified_df.groupby("Class").agg({"Amount":['sum']}))
+
+
 
 def preprocess(canonical_df, configurations):
     if configurations["custom_preprocess"]["enabled"]:
