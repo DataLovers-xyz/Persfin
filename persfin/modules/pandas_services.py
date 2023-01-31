@@ -35,3 +35,24 @@ def get_classified_df(source_df,classification_set):
 
 def output_file(source_df,path):
     source_df.to_excel(path,index=False)
+
+def get_analyzed_df(source_df):
+    return source_df.groupby("Class").agg({"Amount":['sum','count','max']})
+
+def get_hashed_df(source_df):
+    working_df = source_df
+    working_df["_signature"] = pandas.util.hash_pandas_object(source_df[["Date","Amount","Description"]], index=False)
+    return(working_df)
+
+def get_new_df():
+    return pandas.DataFrame()
+
+def get_concatenated_df(source, added):
+    list = [source, added]
+    return pandas.concat(list, ignore_index=True)
+
+def get_deduplicated_df(source_df):
+    return source_df.drop_duplicates(subset="_signature", ignore_index=True)
+
+def get_analized_df_by_year(source_df,year):
+    return (source_df[source_df["Date"].dt.year == year].groupby([source_df["Date"].dt.month,"Class"]).agg({"Amount":["count","sum","median","max"]}))

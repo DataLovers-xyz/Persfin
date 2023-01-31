@@ -1,4 +1,4 @@
-from .pandas_services import ingest_data, get_canonical_df, get_custom_preprocessed_df, get_preprocessed_df, get_classified_df, output_file
+from .pandas_services import ingest_data, get_canonical_df, get_custom_preprocessed_df, get_preprocessed_df, get_classified_df, output_file, get_analyzed_df
 import custom_preprocesses
 from exceptions import Preprocess_Definition_Error
 import json
@@ -14,9 +14,7 @@ def main(execution_params, configurations, canonical_schema):
     input(f"generated classified file {get_file_name(configurations)} press key to continue")
     print(classified_df)
     input("your classified file looks like this press any key to continue")
-    print(classified_df.groupby("Class").agg({"Amount":['sum']}))
-
-
+    print(get_analyzed_df(classified_df))
 
 def preprocess(canonical_df, configurations):
     if configurations["custom_preprocess"]["enabled"]:
@@ -34,9 +32,6 @@ def get_custom_preprocess_func(configurations):
         return preprocess_func.main
     else:
         raise Preprocess_Definition_Error(configurations["custom_preprocess"]["script"])
-
-def classify():
-    pass
 
 def get_classifiers(configurations):
     classification_set = []

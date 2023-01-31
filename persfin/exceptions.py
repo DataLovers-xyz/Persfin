@@ -16,4 +16,10 @@ class Preprocess_Definition_Error(Exception):
         self.message = f"The preprocess defined as {script_name} does not exist in your preprocesses folder"
         super().__init__(self.message)
 
+class Configuration_Directory_Not_Present(Exception):
+    "Raised when a directory defined in the configuration doesn't exist"
+    def __init__(self, path):
+        self.message = f"The directory defined in your configurations as {path} does not exist in your system"
+        super().__init__(self.message)
+
 
