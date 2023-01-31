@@ -1,32 +1,22 @@
 # Personal Finance Classifier 
 ## What is the Personal Finance Classifier?
-- This package classifies bank transaction statements in categories according to the description of the transaction as provided by the bank.
-- The package outputs output files that then can be analyzed, also by the program, to see a breakdown of your expenses by category on a given period (month/year).
-    - The program will process all input files in your provided data location.
+- This package classifies bank transaction statements in categories according to the description of the transaction as provided by the bank in the statement.
+- The package outputs files that then can be analyzed, also by the program, to see a breakdown of your expenses by category on a given period, filtered by year and grouped by month and category.
 - The program operates locally in order the information never leaves the local environment.
 - You can create your own classfying categories and populate them. 
     - Some classifiers are included but are heavily localized to the Netherlands.
     - Pull request on expanding the classifiers are welcomed. Follow contribution guidelines.
+- Your custom classifiers should be declared in the config file.
 ## Installing
-## How to use?
-- You need to inform the program
-    - The general structure of the files you will input.
-        - The classifier assumes a canonical file structure with the following columns. 
-                - Date
-                - Amount 
-                - Description
-            -  The canonical headers, Date, Amount, and Description are mapped to the headings of the columns in your input files according to the master schema mentioned in your configuration file.
-            - The canonical schema for ABN AMRO is included and is the default that works with the sample file. 
-    - Where do you want the classified outputs to be stored.
-    - The location of the classifiers you will use.
-        - defaults to ./classifiers/NL
-    - The classifiers that you will use and their respective tag (such as Groceries, Eat Out, etc.)
-    - All of this is defined in configuration files.
-
+- clone these repository to your local machine.
+- create a python virtual environment through python3 -m venv venv
+    - the environment should be based in python 3.10
+- activate the virtual environment
+- pip install the dependencies on requirements.txt
 ### Configurations:
 - All configurations are set in the config.toml file, the file includes the following values to configure.
     - Paths to:
-        - Master Schema: 
+        - Schema Mapper: 
         - Classifiers:
             - Path to the JSON classifiers
             - This defaults to the NL classifiers.
@@ -43,11 +33,17 @@
 ### Commands:
 - persfin classify [path to input file]
     - Actions performed
-        - Displays results and generates output file
+        - Generates output file
+        - Displays the classified file
+        - Displays the breakdown of transactions by category.
     - Options
-        - --analyze: Analyzes output produced and displays result.
-        - --complete_pending: Allows to manually classify unclassified transactions before generating output. In development
+        - Comming soon
 - persfin analyze [year] 
-    - Analyses master data per the input year
+    - Analyses output files data per the input year
+    - Collects data from all classified output files
+    - Deduplicates data, if the same transaction is contained in several files it will be taken into account for analysis only once.
+    presents the breakdown of transactions filtered by the corresponding year and grouped by month and class, it presents the aggregated number of type of transactions, the median value of each transaction class and the maximum value of each transaction class.
+
+
 
 

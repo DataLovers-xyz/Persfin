@@ -48,7 +48,7 @@ def get_inputs():
 
 def execute():
     configurations = getconfig("config.toml")
-    canonical_schema = getconfig(configurations["paths"]["column_mapper"])
+    canonical_schema = getconfig(configurations["paths"]["schema_mapper"])
     execute_params = get_inputs()
     execution_path[execute_params["command"]](execute_params, configurations, canonical_schema)
 
